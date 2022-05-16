@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- CSS Custom -->
+    <link rel="stylesheet" href="style.css">
+    <title>Cine</title>
+</head>
+<body>
+    <header>
+        <img src="assets/sweifticket-logo.svg" height="50px" alt="">
+    </header>
+    <nav class="navbar navbar-expand-lg bg-light ">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">CARTELERA</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">HORARIO</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">SNACKS</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link">CONTACTO</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    <!-- PELICULAS -->
+    <section class="container">
+        <div class="row">
+            <h1>ESTRENOS EN CARTELERA</h1>
+            <div class="col-4" >
+                <img src="assets/doctor-strange-nuevo-poster.jpg" width="300px"  alt="Doctor Strange">
+                <button type="button" id="btnPelicula1" class="btnPelicula mt-2 btn btn-primary btn-sm secondary" alt="Doctor Strange">Comprar Ticket</button>
+                <p>$4.500</p>
+            </div>
+            <div class="col-4" >
+                <img src="assets/52eb2e4584ad3698c5a705fde378c07b.jpg" width="300px" alt="Sonic 2">
+                <button type="button" id="btnPelicula2" class="mt-2 btn btn-primary btn-sm btnPelicula secondary" alt="Sonic 2">Comprar Ticket</button>
+                <p>$4.500</p>
+            </div>
+            <div class="col-4" >
+                <img src="assets/FKhaUVtXEAYp5Ds.jpeg" width="300px" alt="THE BATMAN">
+                <button type="button" id="btnPelicula3" class="mt-2 btn btn-primary btn-sm btnPelicula secondary" alt="THE BATMAN">Comprar Ticket</button>
+                <p>$4.500</p>
+        </div>
+        </div>
+    </section>
+
+    <!-- HORARIO -->
+    <section class="container mt-5 d-flex justify-content-center horario">
+      <div class="row">
+        <h1>HORARIOS DISPONIBLES</h1>
+        <div class="col">
+          <button type="button" id="btnHorario1" class="btn btn-outline-secondary btn-lg m-3">10:00am</button>
+          <button type="button" id="btnHorario2" class="btn btn-outline-secondary btn-lg m-3">12:15pm</button>
+          <button type="button" id="btnHorario3" class="btn btn-outline-secondary btn-lg m-3">15:30pm</button>
+          <button type="button" id="btnHorario4" class="btn btn-outline-secondary btn-lg m-3">18:00pm</button>
+          <button type="button" id="btnHorario5" class="btn btn-outline-secondary btn-lg m-3">20:30pm</button>
+          <button type="button" id="btnHorario6" class="btn btn-outline-secondary btn-lg m-3">23:10pm</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ASIENTOS -->
+    <h1 class="mt-5">SELECCIONE ASIENTO</h1>
+    <div class="row container">
+      <!--SALAS-->
+      <div class="col">
+      </div>
+  
+      <!--Gestion de Asientos-->
+      <div class="col">
+          <div id = "screen">
+              <p>PANTALLA</p>
+              <img src="./image/rectangle.png" alt="">
+          </div>
+          <div id="seat" ></div>
+  
+      </div>
+      <!-- <div class="col"> -->
+          <!--Descripcion-->
+          <!-- <div id="icon">
+              <ul>
+                  <li class="active">PANTALLA</li>
+                  <li>Seleccionar Asiento <img src="./image/select.png" alt=""></li>
+                  <li>Asiento Normal <img src="./image/seat.png" alt=""></li>
+                  <li>Asiento Roto <img src="./image/broken.png" alt=""></li>
+                  <li>Cambio de pasillo <img src="./image/aisle.png" alt=""></li>
+              </ul>
+          </div>
+      </div> -->
+  </div>
+  
+  
+  <!--Estado de Asiento-->
+  
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" id='modal'>
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                      &times;
+                  </button>
+                  <h4 class="modal-title" id="myModalLabel">
+                      Estado de Asiento
+                  </h4>
+              </div>
+              <div class="modal-body">
+                  <p id='title'></p>
+                  <form role="form">
+                      <div class="form-group">
+                          <select class="form-control" id='seatState'>
+                              <option value = 'active'>Disponible</option>
+                              <option value = 'broken'>Ocupado</option>
+                              <option value = 'aisle'>Seleccionado</option>
+                          </select>
+                      </div>
+                  </form>
+  
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cierre
+                  </button>
+                  <button type="button" class="btn btn-primary" id='update' data-dismiss="modal">
+                      Aplicar Cambio
+                  </button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- SNACKS -->
+  <section class="container">
+    <div class="row">
+        <h1 class="mt-5">ELIGE TU SNACK</h1>
+        <div class="col-4" >
+            <img src="assets/popcorn.jpg" width="300px"  alt="Pop Corn">
+            <button type="button" id="btnSnack1" class="btnPelicula mt-2 btn btn-primary btn-sm secondary" alt="Pop Corn">Seleccionar</button>
+            <p>$3.500</p>
+        </div>
+        <div class="col-4" >
+            <img src="assets/soda.jpg" width="300px" alt="Bebida">
+            <button type="button" id="btnSnack2" class="mt-2 btn btn-primary btn-sm btnPelicula secondary" alt="Bebida">Seleccionar</button>
+            <p>$2.500</p>
+        </div>
+        <div class="col-4" >
+            <img src="assets/combo.jpg" width="300px" alt="Combo Cine">
+            <button type="button" id="btnSnack3" class="mt-2 btn btn-primary btn-sm btnPelicula secondary" alt="Combo Cine">Seleccionar</button> 
+            <p>$5.500</p>
+    </div>
+    </div>
+</section>
+
+    <FOOTER>
+      <div style="height: 150px;">
+
+      </div>
+    </FOOTER>
+    
+    
+
+    <!-- SELECCIONES Y RESUMEN -->
+    <section class="fixed-bottom detail">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div>
+              <p>PELICULA</p>
+              <h2 id="sMovie">-</h2>
+            </div>
+          </div>
+          <div class="col">
+            <div>
+              <p>HORARIO</p>
+              <h2 id="sHorario">-</h2>
+            </div>
+          </div>
+          <div class="col">
+            <div>
+              <p>ASIENTO</p>
+              <h2 id="sAsiento">-</h2>
+            </div>
+          </div>
+          <div class="col">
+            <div>
+              <p>SNACKS</p>
+              <h2 id="sSnack">-</h2>
+            </div>
+          </div>
+          <div class="col">
+            <div>
+              <p>TOTAL</p>
+              <h2 id="sTotal">-</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <!-- Alert JavaScript -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- App de Cine JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
