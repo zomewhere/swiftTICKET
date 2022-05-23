@@ -1,17 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 *{
     margin: 0;
     padding: 0;
+    font-family: Montserrat;
 }
+
+html {
+    scroll-behavior: smooth;
+  }
 
 h1{
     text-align: center;
 }
 
-header {
+/* header {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 1rem 0;
+} */
+
+.zNav{
+    background-color: white;
+    padding: 15px 0;
+
+}
+
+.aLinks{
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.zNav a{
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 10px;
+    color: rgb(40, 40, 40);
+}
+
+.zNav a:hover{
+    background-color: #ed4137;
+    padding: 10px 10px;
+    color: white;
+    border-radius: 3px;    
 }
 
 .detail{
@@ -20,38 +54,87 @@ header {
     width: 100%;
 }
 
+h1 {
+    font-weight: 700;
+    padding: 15px 0;
+}
+
+.zCenter{
+    display: flex;
+    justify-content: center;
+}
+
+.peliculas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+}
+
+.peliculas p{
+    font-size: 25px;
+    margin-top: 10px;
+}
+
+.zPeliculas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.zPeliculas img{
+    margin-bottom: 10px;
+}
+
+.horario{
+    padding: 100px 0;
+    background-color: rgb(26, 31, 37);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cssHorario{
+    color: white;
+}
 
 /* ASIENTOS */
 .oneDiv{
     margin: 10px;
     width: 52px;
-    height: 32px;
+    height: 70px;
     float: left;
+    text-align: center;
+    font-weight: 700;
+    color: white;
+}
+
+.screen{
+    display: flex;
+    justify-content: center;
+}
+
+.asiento{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #010c1e;
+}
+
+.asiento h1{
+    color: white;
 }
 
 #modal{
     margin-top: 80px;
+    display: flex;
+    justify-content: center;
 }
 
 #seat{
-    width: 600px;
-    /*height: 900px;*/
-}
-
-#screen img{
-    margin-left: 200px;
-}
-
-#screen p{
-    margin-left: 260px;
-    font-size: 18px;
-    color: #8fa1c7;
-}
-
-#icon{
-    padding-left: 100px;
-    padding-top: 310px;
-
+    width: 750px;
+    height: 500px;
 }
 
 .active{
@@ -59,8 +142,123 @@ header {
 }
 
 li{
-    height: 35px;
-    line-height: 35px;
+    height: 100px;
+    line-height: 100px;
     list-style: none;
-    color: #0e3a47;
+    color: #ffffff;
+}
+
+.snacks{
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(176deg, rgba(237,65,55,1) 0%, rgba(113,87,220,1) 100%);
+}
+
+.snacks img{
+    margin-bottom: 10px;
+}
+
+.snacks p{
+    font-size: 25px;
+    margin-top: 10px;
+}
+
+.setResume {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* .setResume p{
+    max-width: 500px;
+} */
+
+/* BOTONES */
+
+.btn {
+    padding: 0.9em 1.6em;
+    border: none;
+    outline: none;
+    color: #FFF;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 17px;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 12px;
+   }
+   
+   .btn::after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #010c1e;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+   }
+   /* glow */
+   .btn::before {
+    content: "";
+    background: linear-gradient(
+       45deg,
+       #00a69d, #ed4137, #FF00C8, #f9b040,
+         #00a69d, #ed4137, #FF00C8, #f9b040
+   );
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 600%;
+    z-index: -1;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    filter: blur(8px);
+    animation: glowing 20s linear infinite;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+    opacity: 0;
+   }
+   
+   @keyframes glowing {
+    0% {
+     background-position: 0 0;
+    }
+   
+    50% {
+     background-position: 400% 0;
+    }
+   
+    100% {
+     background-position: 0 0;
+    }
+   }
+   
+   /* hover */
+   .btn:hover::before {
+    opacity: 1;
+   }
+   
+   .btn:active:after {
+    background: transparent;
+   }
+   
+   .btn:active {
+    color: #fff;
+    
+   }
+
+.cssBtnHorario{
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+}
+
+.cssBtnHorario:hover{
+    color: white;
 }

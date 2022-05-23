@@ -3,6 +3,24 @@
 let saldo = 0;
 let total = 0;
 
+// ININICIAR
+
+let userName = "";
+
+swal.fire({
+     title: "¡Bienvenido!",
+     text: "Para comenzar, ingresa tu nombre y obten un Bono de $10.000",
+     input: "text",
+        inputValidator: function (value) {
+        userName = value;
+        saldo = 10000;
+        sUser()
+        }
+})
+
+function sUser() {
+    document.getElementById("sUser").innerText = "Hola " + userName + ", tu saldo es de: " + saldo
+}
 
 // PELICULAS ------------------------------------------------------------------
 
@@ -24,15 +42,15 @@ pelicula1.onclick = () =>{
 
 pelicula2.onclick = () =>{
     selectPelicula = document.getElementById("btnPelicula2").attributes.alt.nodeValue;
-    sPelicula()
     total +=4500;
+    sPelicula()
     sTotal()
 }
 
 pelicula3.onclick = () =>{
     selectPelicula = document.getElementById("btnPelicula3").attributes.alt.nodeValue;
-    sPelicula()
     total +=4500;
+    sPelicula()
     sTotal()
 }
 
@@ -40,6 +58,7 @@ pelicula3.onclick = () =>{
 // Funcion para escribir la Pelicula seleccionada en el HTML
 function sPelicula(){
     document.getElementById("sMovie").innerText = selectPelicula
+    location="#mHorario"
 }
 
 
@@ -90,6 +109,7 @@ horario6.onclick = () =>{
 // Funcion para escribir el Horario seleccionado en el HTML
 function sHorario(){
     document.getElementById("sHorario").innerText = selectHorario
+    location="#mAsiento"
 }
 
 
@@ -106,20 +126,15 @@ for(let i = 0;i<8;i++){
     }
 
 }
-//Añadir Asiento
-// array[i][j] = 0 Asiento Libre
-// array[i][j] = 1 Asiento Seleccionado
-// array[i][j] = -1 Asiento Ocupado
-// array[i][j] = 2 Cambio de Pasillo
 window.onload = function createState() {
-    for(let i = 1;i<=8;i++){
-        for(let j = 1;j<=8;j++) {
+    for(let i = 1;i<=5;i++){
+        for(let j = 1;j<=10;j++) {
             let one = document.createElement('div');
             document.getElementById('seat').appendChild(one);
             one.setAttribute('class', 'oneDiv');
             let sateImage = document.createElement('img');
             let num = document.createElement('span');
-            num.innerText = i + '.' + j;
+            num.innerText = i + ' - ' + j;
             sateImage.setAttribute("class", "sate");
             sateImage.setAttribute("id", "sate"+i+j);
             sateImage.setAttribute('data-toggle', 'modal');
@@ -138,33 +153,30 @@ window.onload = function createState() {
                 sAsiento()
             });
             let change = document.getElementById('update');
-            change.onclick = function changeState() {
-                let imageId = "sate"+row+col;
-                //alert(imageId);
-                let newState = document.getElementById(imageId);
-                let seatState = document.getElementById('seatState');
+                change.onclick = function changeState() {
+                    let imageId = "sate"+row+col;
+                    //alert(imageId);
+                    let newState = document.getElementById(imageId);
+                    let seatState = document.getElementById('seatState');
 
-                let index = seatState.selectedIndex;
-                let value = seatState.options[index].value;
-                if(value == 'active'){
-                    array[row-1][col-1] = 0;
-                    newState.src = './image/seat.png';
-                    console.log('active');
-                    
+                    let index = seatState.selectedIndex;
+                    let value = seatState.options[index].value;
+                    if(value == 'active'){
+                        array[row-1][col-1] = 0;
+                        newState.src = './image/seat.png';
+                        console.log('active');
+                    }
+                    else if(value == 'broken'){
+                        array[row-1][col-1] = -1;
+                        newState.src = './image/broken.png';
+                        console.log('broken');
+                    }
+                    else if(value == 'aisle'){
+                        array[row-1][col-1] = 2;
+                        newState.src = './image/aisle.png';
+                        console.log('aisle');
+                    }
                 }
-                else if(value == 'broken'){
-                    array[row-1][col-1] = -1;
-                    newState.src = './image/broken.png';
-
-                    console.log('broken');
-
-                }
-                else if(value == 'aisle'){
-                    array[row-1][col-1] = 2;
-                    newState.src = './image/aisle.png';
-                    console.log('aisle');
-                }
-             }
              
             one.appendChild(sateImage);
             one.appendChild(num);
@@ -174,6 +186,7 @@ window.onload = function createState() {
 }
 function sAsiento(){
     document.getElementById("sAsiento").innerText = "Fila: " + row + "\n" + "Asiento: " + col;
+    location="#mSnack"
 }
 
 
@@ -193,6 +206,7 @@ snacks1.onclick = () =>{
     total +=3500;
     sTotal()
     sSnack()
+    location="#mResume"
 }
 
 snacks2.onclick = () =>{
@@ -200,6 +214,7 @@ snacks2.onclick = () =>{
     total +=2500;
     sTotal()
     sSnack()
+    location="#mResume"
 }
 
 snacks3.onclick = () =>{
@@ -207,6 +222,7 @@ snacks3.onclick = () =>{
     total +=5500;
     sTotal()
     sSnack()
+    location="#mResume"
 }
 
 
@@ -214,6 +230,9 @@ snacks3.onclick = () =>{
 function sSnack(){
     document.getElementById("sSnack").innerText = selectSnack
 }
+
+
+// RESUMEN ------------------------------------------------------------------
 
 
 // TOTAL
