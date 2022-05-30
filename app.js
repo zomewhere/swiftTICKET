@@ -7,16 +7,20 @@ let total = 0;
 
 let userName = "";
 
-swal.fire({
-     title: "¡Bienvenido!",
-     text: "Para comenzar, ingresa tu nombre y obten un Bono de $10.000",
-     input: "text",
-        inputValidator: function (value) {
-        userName = value;
-        saldo = 10000;
-        sUser()
-        }
-})
+let start = document.getElementById("start")
+start.onclick = () => {
+    swal.fire({
+         title: "¡Bienvenido!",
+         text: "Para comenzar, ingresa tu nombre y obten un Bono de $10.000",
+         input: "text",
+            inputValidator: function (value) {
+            userName = localStorage.getItem(value);;
+            saldo = 10000;
+            sUser()
+            }
+    })
+}
+
 
 function sUser() {
     document.getElementById("sUser").innerText = "Hola " + userName + ", tu saldo es de: " + saldo
@@ -233,7 +237,52 @@ function sSnack(){
 
 
 // RESUMEN ------------------------------------------------------------------
+// FINALIZAR ----------------------------------------------------------------
+let finalizar = document.getElementById("finalizar")
+finalizar.onclick = () =>{
+    
+}
 
+// REINICIAR ----------------------------------------------------------------
+let reload = document.getElementById("reload")
+reload.onclick = () =>{
+    localStorage.clear();
+    location="#mPelicula";
+    setTimeout(function(){
+        location.reload()
+    }, 1000);
+}
+// TMDB API -----------------------------------------------------------------
+
+const cargarPeliculas = async() =>{
+    try{
+        const respuesta = await fetch("https://api.themoviedb.org/3/movie/popular?api_key=c92b4da206b87df1b2ffdec716c93ec9")
+        if(respuesta.status === 200){
+            const datos = await respuesta.json();
+            let peliculas = "";
+            datos.results.forEach(pelicula => {
+                peliculas += `
+                    <div class="peliculaCard">
+                        <img class="poster" src="https://image.tmdb.org/t/p/w500/${pelicula.poster_path}">
+                        <p class="peliculasTitle">${pelicula.title}</p>
+                        <p>⭐ ${pelicula.vote_average}</p>
+                        </div>
+                `;
+            });
+            document.getElementById("peliculasApi").innerHTML = peliculas;
+        } else if(respuesta.status === 401){
+            console.log("Hay un error de Key");
+        } else if(respuesta.status === 404){
+            console.log("La pelicula no existe");
+        } else {
+            console.log("Error");
+        }
+    } catch{
+        console.log(error);
+    }
+}
+
+cargarPeliculas()
 
 // TOTAL
 
