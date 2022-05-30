@@ -238,10 +238,10 @@ function sSnack(){
 
 // RESUMEN ------------------------------------------------------------------
 // FINALIZAR ----------------------------------------------------------------
-let finalizar = document.getElementById("finalizar")
-finalizar.onclick = () =>{
+// let finalizar = document.getElementById("finalizar")
+// finalizar.onclick = () =>{
     
-}
+// }
 
 // REINICIAR ----------------------------------------------------------------
 let reload = document.getElementById("reload")
