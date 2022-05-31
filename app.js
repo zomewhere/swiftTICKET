@@ -1,6 +1,6 @@
 // DINERO --------------------------------------------------------------------
 
-let saldo = 0;
+let saldo 
 let total = 0;
 
 // ININICIAR
@@ -14,7 +14,7 @@ start.onclick = () => {
          text: "Para comenzar, ingresa tu nombre y obten un Bono de $10.000",
          input: "text",
             inputValidator: function (value) {
-            userName = localStorage.getItem(value);;
+            userName = value;
             saldo = 10000;
             sUser()
             }
@@ -23,7 +23,8 @@ start.onclick = () => {
 
 
 function sUser() {
-    document.getElementById("sUser").innerText = "Hola " + userName + ", tu saldo es de: " + saldo
+    document.getElementById("sUser").innerText = "Hola " + userName + ", tu saldo es de: $" + saldo
+    guardar_localstorage()
 }
 
 // PELICULAS ------------------------------------------------------------------
@@ -62,6 +63,9 @@ pelicula3.onclick = () =>{
 // Funcion para escribir la Pelicula seleccionada en el HTML
 function sPelicula(){
     document.getElementById("sMovie").innerText = selectPelicula
+    document.getElementById("btnPelicula1").disabled = true;
+    document.getElementById("btnPelicula2").disabled = true;
+    document.getElementById("btnPelicula3").disabled = true;
     location="#mHorario"
 }
 
@@ -113,6 +117,12 @@ horario6.onclick = () =>{
 // Funcion para escribir el Horario seleccionado en el HTML
 function sHorario(){
     document.getElementById("sHorario").innerText = selectHorario
+    document.getElementById("btnHorario1").disabled = true;
+    document.getElementById("btnHorario2").disabled = true;
+    document.getElementById("btnHorario3").disabled = true;
+    document.getElementById("btnHorario4").disabled = true;
+    document.getElementById("btnHorario5").disabled = true;
+    document.getElementById("btnHorario6").disabled = true;
     location="#mAsiento"
 }
 
@@ -223,7 +233,7 @@ snacks2.onclick = () =>{
 
 snacks3.onclick = () =>{
     selectSnack = document.getElementById("btnSnack3").attributes.alt.nodeValue;
-    total +=5500;
+    total +=5000;
     sTotal()
     sSnack()
     location="#mResume"
@@ -233,18 +243,63 @@ snacks3.onclick = () =>{
 // Funcion para escribir el Snack seleccionada en el HTML
 function sSnack(){
     document.getElementById("sSnack").innerText = selectSnack
+    document.getElementById("btnSnack1").disabled = true;
+    document.getElementById("btnSnack2").disabled = true;
+    document.getElementById("btnSnack3").disabled = true;
 }
 
+// localStorage --------------------------------------------------------------
+obtener_localstorage()
+
+function obtener_localstorage(){
+    if(localStorage.getItem("user")){
+        userName = localStorage.getItem("user")
+        saldo = localStorage.getItem("dinero")
+        sUser()
+    } else{
+        console.log("nada por aquí");
+    }
+    
+}
+
+function guardar_localstorage(){
+    localStorage.setItem("user", userName)
+    localStorage.setItem("dinero", saldo)
+}
 
 // RESUMEN ------------------------------------------------------------------
+
 // FINALIZAR ----------------------------------------------------------------
-// let finalizar = document.getElementById("finalizar")
-// finalizar.onclick = () =>{
-    
-// }
+let finalizar = document.getElementById("finalizar")
+
+finalizar.onclick = () =>{
+    if(total<saldo){
+        Swal.fire({
+            title: 'Gracias!',
+            text: 'Muestra este codigo en Boleteria para acceder a tus productos',
+            imageUrl: './assets/qr-code.png',
+            imageWidth: 400,
+            imageHeight: 400,
+            imageAlt: 'QR Pedido',
+        })
+        saldo -= total;
+        sUser();
+    } else{
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No tienes dinero para comprar, haz click en OK para recibir un bono',
+          }).then((result) =>{
+            if (result.isConfirmed) {
+                start.onclick()
+              }
+          })
+    }
+}
 
 // REINICIAR ----------------------------------------------------------------
 let reload = document.getElementById("reload")
+
 reload.onclick = () =>{
     localStorage.clear();
     location="#mPelicula";
@@ -252,6 +307,7 @@ reload.onclick = () =>{
         location.reload()
     }, 1000);
 }
+
 // TMDB API -----------------------------------------------------------------
 
 const cargarPeliculas = async() =>{
